@@ -1,14 +1,14 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 
 const MoviesPage = () => {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("query");
-  const genre = searchParams.get("genre");
-  const country = searchParams.get("country");
+  // const searchParams = useSearchParams();
+  // const query = searchParams.get("query");
+  // const genre = searchParams.get("genre");
+  // const country = searchParams.get("country");
 
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
@@ -21,14 +21,14 @@ const MoviesPage = () => {
         `https://api.apilayer.com/unogs/search/titles`,
         {
           headers: { apikey: API_KEY_UNOGS },
-          params: { title: query, genre, country, page },
+          // params: { title: query, genre, country, page },
         }
       );
       setMovies(response.data.results);
       setTotalPages(response.data.total_pages);
     };
     fetchMovies();
-  }, [query, genre, country, page]);
+  }, []);
 
   const goToNextPage = () => setPage((prev) => Math.min(prev + 1, totalPages));
   const goToPreviousPage = () => setPage((prev) => Math.max(prev - 1, 1));
